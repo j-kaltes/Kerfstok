@@ -1,0 +1,20 @@
+<resources>
+    <string id="AppNameR">Kerfstok</string>
+    <string id="AppNameD">Kerfstok-d</string>
+    <string id="charttitlemgdL">Glucose (mg/dL)</string> 
+    <string id="charttitlemmolL">Glucose (mmol/L)</string> 
+    <string id="datalabel">Glucose</string>
+    <string id="mgdL">mg/dL</string>
+    <string id="mmolL">mmol/L</string>
+    <string id="charttitleEN">Energy expenditure (kcals/min)</string> 
+    <string id="datalabelEN">Energy expenditure</string>
+    <string id="kcalsmin">kcals/min</string>
+    <string id="venusq">n</string>
+    <string id="venusq2">n</string>
+    <string id="venu">n</string>
+    <string id="fenix7">n</string>
+    <string id="marq2">n</string>
+    <string id="edgeexplore2">n</string>
+    <string id="edge830">n</string>
+
+</resources>

@@ -1,0 +1,11 @@
+Edge 830  : 
+	0: lager
+	histview eerste line niet hele breedte
+	SportVIew:
+		Glucose lager
+		laps tijd hoger
+		laps label lager
+		distance lager
+Edge 1040,1030:
+	probeer edge explore
+
