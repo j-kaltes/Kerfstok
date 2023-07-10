@@ -23,21 +23,23 @@ const	unitlower=venu?0:height*0.030;
 const fromh=venusq2?10:0; 
 const ydist=((venusq||venusq2)?(height*.65):(fenix7?(height*.635):(edgeexplore2||edge830)?height*.7:(height*.59)));
 const ydistunits=(fenix7?(height*.64):(edgeexplore2?(height*.67):(height*.65)));
-const sporttime=venusq2?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MILD;
+const sporttime=(venusq2||fr965)?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MILD;
+const heartfont=sporttime;
 const speedfont=(venusq2||fenix7)?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
-const glucosefont=venusq2?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT;
+const glucosefont=(venusq2||fr965)?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT;
 const gpsfont=venusq2?Gfx.FONT_MEDIUM:Gfx.FONT_LARGE;
 
 const speedunitJust=(fenix7||venusq2||venusq)?(Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT):Gfx.TEXT_JUSTIFY_RIGHT;
-const speedy=fenix7?(height*.61):( venusq2?(height*.65):(( edgeexplore2||edge830)?(height*.48):(height*.59)));
+const speedy=fenix7?(height*.61):( venusq2?(height*.65):(( edgeexplore2||edge830)?(height*.48):(fr965?height*.55:(height*.59))));
 const lapsfont=fenix7?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MEDIUM;
 var starty,y;
 var 	speedunity;
-const lapvaluey=venusq2?(fh+height*.60): (edgeexplore2?(height*.57): (fromh+height*.57));
+const lapvaluey=venusq2?(fh+height*.60):(fr965?height*.52 :( edgeexplore2?(height*.57): (fromh+height*.57)));
 const x=width*.57;
 const fh=fromh-height*0.05;
 var verh;
 var	lapnamey,timey;
+var hearty;
 function onLayout(dc) {
 	hheight= dc.getFontHeight(sporttime);
 	 gluheight= dc.getFontHeight(glucosefont);
@@ -58,6 +60,8 @@ function onLayout(dc) {
 			timey=-hheight*.12;
 			}
 		}
+
+	hearty=height-hheight*.88;
 	}
     function onUpdate(dc) { 
 	dc.clearClip();
@@ -159,7 +163,7 @@ function onLayout(dc) {
 			return;
 			}
 		}
-	dc.drawText(wmid,height-hheight*.88,sporttime,hr.format("%d"), Gfx.TEXT_JUSTIFY_CENTER);
+	dc.drawText(wmid,hearty,heartfont,hr.format("%d"), Gfx.TEXT_JUSTIFY_CENTER);
 	}
 
 }

@@ -29,6 +29,8 @@ function showsend(num) {
 	
 */
 var glucosestr="";
+
+//	var gegs=["3MH0045FKCD",unixnu, val,trend,0,unit];
 function setglucose(gegs) {
 	if(!(gegs has :size)||gegs.size()<5) {
 		return;
@@ -46,22 +48,28 @@ function setglucose(gegs) {
 		glucosestr=glucose.format("%.0f");
 		}
 	var alarm=gegs[4];
-	var nooff=alarm&0x07;
-	if((alarm&0x08)!=0x0)  {
-		if(alarm&0x10!=0x0) {
-			startalarm();
+	if(alarm==0) {
+	     alarmactive=false;
+	     glucoserate=gegs[3];
+	 }
+	 else {
+		var nooff=alarm&0x07;
+		if((alarm&0x08)!=0x0)  {
+			if(alarm&0x10!=0x0) {
+				startalarm();
+				}
+			else {
+				clearbeep();
+				clearbeep();
+				clearbeep();
+				clearbeep();
+				}
 			}
-		else {
-			clearbeep();
-			clearbeep();
-			clearbeep();
-			clearbeep();
+		switch(nooff) {
+			case 4:glucoserate=20.0;break;
+			case 5:glucoserate=-20.0;break;
+			default: glucoserate=gegs[3];break;
 			}
-		}
-	switch(nooff) {
-		case 4:glucoserate=20.0;break;
-		case 5:glucoserate=-20.0;break;
-		default: glucoserate=gegs[3];break;
 		}
 	//TODO don't add when too old
 	if(glufield!=null) {

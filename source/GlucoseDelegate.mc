@@ -35,7 +35,9 @@ function mkglucose() {
 //	var val=501.0;
 	var dir=Math.pow(-1,(Math.rand()%2));
 	var dirval=Math.rand()%5;
-	var gegs=["3MH0045FKCD",unixnu, val,dir*dirval,0,unit];
+	var trend= dir*dirval;
+	var gegs=["3MH0045FKCD",unixnu, val,trend,0,unit];
+	System.println("dir="+dir+" dirval="+dirval+" trend="+trend);
 	unititer++;
 	setglucose(gegs);
 	}

@@ -8,7 +8,6 @@ using Toybox.Time.Gregorian;
 
 var toshow=1;
 const maxline=11;
-var numwidth;
 class DialView extends WatchUi.View {
 const numsfont= venusq2?Gfx.FONT_XTINY:((edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
 
@@ -28,6 +27,7 @@ var timeoff=0.0;
 	}
 
 var vary;
+var numwidth;
     function onLayout(dc) {
 	numwidth=dc.getTextWidthInPixels("9", dialnumberfont);
 	var dim=dc.getTextDimensions("9", numsfont);

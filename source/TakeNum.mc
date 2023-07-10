@@ -23,6 +23,7 @@ var fenix7=false;
 var marq2=false;
 var edgeexplore2=false;
 var edge830=false;
+var fr965=false;
 class TakeNumApp extends Application.AppBase {
     private var methodmail as Method(mailIter as  MailboxIterator) as Void;
 //    private var methodphone     as Method(msg as Message) as Void;
@@ -94,6 +95,11 @@ function initialize() {
 						else {
 							if(WatchUi.loadResource(Rez.Strings.edge830).equals("y")) {
 								edge830=true;
+								}
+							else {
+								if(WatchUi.loadResource(Rez.Strings.fr965).equals("y")) {
+									fr965=true;
+									}
 								}
 							}
 						}
