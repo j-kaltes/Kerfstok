@@ -18,7 +18,7 @@ var from;
 function onShow() {
 }
 function onLayout(dc) {
-	clockhight= dc.getFontHeight(clockfont)/3;
+	clockhight= dc.getFontHeight(clockfont)/2.7;
 }
 
 

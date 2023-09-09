@@ -115,7 +115,7 @@ function onLayout(dc) {
 		}
 	if(locinfo!=null) {
 		var showspeed=locinfo.speed*toshowspeed;
-		dc.drawText(width,speedunity ,Gfx.FONT_XTINY,speedunits, speedunitJust);
+		dc.drawText(width*.99,speedunity ,Gfx.FONT_XTINY,speedunits, speedunitJust);
 		dc.drawText(width*.98,speedy,speedfont,showspeed.format("%.0f"), Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT);
 		}
 	else {
@@ -132,7 +132,7 @@ function onLayout(dc) {
 			var dist= actinfo.elapsedDistance*toshowdistance;
 			dc.drawText(width*.13,ydist ,speedfont, dist.format("%.1f"),Gfx.TEXT_JUSTIFY_LEFT);
 			if(showdistanceunit) {
-				dc.drawText(width*.12,ydistunits ,Gfx.FONT_XTINY,distanceunits, Gfx.TEXT_JUSTIFY_RIGHT);
+				dc.drawText(width*.13,ydistunits ,Gfx.FONT_XTINY,distanceunits, Gfx.TEXT_JUSTIFY_RIGHT);
 				}
 			}
 		if(actinfo.currentHeartRate!=null)  {

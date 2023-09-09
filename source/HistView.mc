@@ -9,7 +9,7 @@ var shown;
 var shownbase;
 var maxshown;
 var item0,item1;
-const histrows=4;
+var histrows=4;
 
 class HistView extends WatchUi.View {
 const space="                                                        ";

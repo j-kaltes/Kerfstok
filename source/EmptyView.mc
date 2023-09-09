@@ -36,7 +36,7 @@ function onLayout(dc) {
 	wmid=width/2;
 
 	hmid=height/(firstrows+1);
-	clockhight= dc.getFontHeight(clockfont)/3;
+	clockhight= dc.getFontHeight(clockfont)/2.7;
 	theight= dc.getFontHeight(Gfx.FONT_NUMBER_HOT);
   //      WatchUi.pushView(new VarView(), new VarDelegate(new todial()),WatchUi.SLIDE_IMMEDIATE) ; 
 	return true;
