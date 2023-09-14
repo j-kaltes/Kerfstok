@@ -1,6 +1,5 @@
 
-Kerstok is watch app for certain Garmin with touchscreen. It can be downloaded from: https://apps.garmin.com/es-ES/apps/b6348ccc-86d8-4780-8013-d9e19fed5260
-
+Kerstok is watch app for certain Garmin with touchscreen. It can be downloaded from: https://apps.garmin.com/en-US/apps/b6348ccc-86d8-4780-8013-d9e19fed5260
 It should be used with Juggluco, https://www.juggluco.nl/Juggluco/index.html
 
 With it, you can enter numbers under a certain label on your watch. These numbers are sent to Juggluco.
