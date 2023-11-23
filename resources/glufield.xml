@@ -3,10 +3,10 @@
         <fitField id="0" displayInChart="true" sortOrder = "0" precision="1"
         chartTitle="@Strings.charttitlemgdL" dataLabel="@Strings.datalabel"
         unitLabel="@Strings.mgdL"  fillColor="#0f5ad4" />
-        <fitField id="1" displayInChart="true"  sortOrder = "0" precision="1"
+        <fitField id="1" displayInChart="true"  sortOrder = "1" precision="1"
         chartTitle="@Strings.charttitlemmolL" dataLabel="@Strings.datalabel"
         unitLabel="@Strings.mmolL" fillColor= "#0f5ad4" />
-        <fitField id="2" displayInChart="true"  sortOrder = "0" precision="1"
+        <fitField id="2" displayInChart="true"  sortOrder = "2" precision="1"
         chartTitle="@Strings.charttitleEN" dataLabel="@Strings.datalabelEN"
         unitLabel="@Strings.kcalsmin" fillColor="#FF0000"  />
 </fitContributions>
