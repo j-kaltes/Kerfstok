@@ -90,10 +90,11 @@ if((end-begin)!=len) {
 for(var i=0,iter=begin;i<len;i++) {
 	setval2(base,iter,ar[i]);iter++;
 	}
-if(end>storageid[base]) {
+var oldend=storageid[base];
+if(end>oldend) {
 	setstorageid(base,end);
 	}
-if(lowestchange[base]>=begin&&lowestchange[base]<end) {
+if(oldend<begin||(lowestchange[base]>=begin&&lowestchange[base]<end)) {
 	setlowestchange(base,end);
 	}
 Communications.transmit([GOTNUMS,base,begin,end], null, list);
