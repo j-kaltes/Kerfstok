@@ -94,7 +94,8 @@ var oldend=storageid[base];
 if(end>oldend) {
 	setstorageid(base,end);
 	}
-if(oldend<begin||(lowestchange[base]>=begin&&lowestchange[base]<end)) {
+var lowest=lowestchange[base];
+if(oldend<begin||(end-lowest)>maxstorage||(lowest>=begin&&lowest<end)) {
 	setlowestchange(base,end);
 	}
 Communications.transmit([GOTNUMS,base,begin,end], null, list);
