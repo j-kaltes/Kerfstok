@@ -78,7 +78,7 @@ class GlucoseView extends WatchUi.View {
     }
 
 
-var heartfont=Gfx.FONT_NUMBER_MEDIUM;
+var heartfont=(fenixe||fenix8)?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 var heartheight;
 var timeoff=0;
 var datey;
@@ -88,7 +88,7 @@ function onLayout(dc) {
 //	timeoff= heartheight*.36;
 	density=2.0*width/396.0;
 	 if(System.SCREEN_SHAPE_RECTANGLE == screenShape) {
-		if(!(edgeexplore2|| edge830)) {
+		if(!(edge1040||edgeexplore2|| edge830)) {
 		 	timeoff=-theight*0.15;
 			}
 		}
@@ -96,11 +96,16 @@ function onLayout(dc) {
 		if(width>340) {
 			timeoff=theight*0.14;
 			}
+        else {
+            if(fr965) {
+			    timeoff=theight*0.14;
+                }
+            }
 		}
 
 	//	dc.setPenWidth(height*.02);
 //		dc.setPenWidth(density*5.0);
-	 datey = (edgeexplore2?height*.05:0)+(theight*.8+timeoff);
+	 datey = ((edge1040||edgeexplore2)?height*.05:0)+(theight*.8+timeoff);
 }
 
 
@@ -121,7 +126,7 @@ function onLayout(dc) {
 		var y=yorg;
 //		var x=width*.5;
 		var x=width*.615;
-	 	dc.drawText(x,y , Gfx.FONT_SYSTEM_NUMBER_THAI_HOT ,glucosestr,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER);
+	 	dc.drawText(x,y , fenixe?Gfx.FONT_SYSTEM_NUMBER_MEDIUM:(fenix8?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT) ,glucosestr,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER);
 		if(glucoserate==-20) {
 	 		dc.drawText(width*.9,y , Gfx.FONT_LARGE ,">",Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_RIGHT);
 			}
@@ -156,7 +161,7 @@ function onLayout(dc) {
 	dc.drawText(wmid*0.99, timeoff, Gfx.FONT_NUMBER_HOT,   myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_CENTER );
 	dc.drawText(wmid,  datey,Gfx.FONT_TINY,  myTime.day_of_week+" "+  myTime.day + " " + myTime.month,Gfx.TEXT_JUSTIFY_CENTER );
 	var load = System.getSystemStats().battery;
-	dc.drawText(width*0.95,height*.33,Gfx.FONT_XTINY,load.format("%.0f")+"%", Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT);
+	dc.drawText(width*0.95,height*(fr965?.37:.33),Gfx.FONT_XTINY,load.format("%.0f")+"%", Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT);
 	var actinfo=	Activity.getActivityInfo();
 	var hr=0;
 	if(actinfo!=null) {

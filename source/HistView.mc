@@ -17,7 +17,13 @@ const space="                                                        ";
 var nonsense=[0,0,0];
 var hmid;
 var higher;
-const valueheight=(edgeexplore2||edge830)?clockhight*.9:clockhight;
+var fontvalue= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:((edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
+
+var fonttimedate= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:(edgeexplore2?Gfx.FONT_SMALL:(edge830?Gfx.FONT_SMALL:Gfx.FONT_XTINY));
+
+const valueheight=(edgeexplore2||edge840||fr165)?clockhight*.9:
+((edge1040||venusq||venusq2)?clockhight*.8:
+(edge830?clockhight*.7:clockhight*.85));
 //const valueheight=clockhight;
 //var space="				";
     function initialize() {
@@ -26,9 +32,13 @@ const valueheight=(edgeexplore2||edge830)?clockhight*.9:clockhight;
 	 shownbase=new[histrows];
 	showiter0=storageid[0]-1;
 	showiter1=storageid[1]-1;
-// 	hmid=height*(venusq2?0.22:0.2);
-	higher=venusq2?(height*0.0357):0.0;
- 	hmid=(height-clockhight)*((venusq2?0.02:0.0)+(1.0/(histrows+1)));
+	higher=(venusq2)?(height*0.0357):((edgeexplore2||edge1040)?(height*0.029):(edge830?height*0.06:
+(venusq?(height*0.03):0.0)));
+//	higher=venusq2?(height*0.055):0.0;
+ 	hmid=(height-clockhight)*(((venusq||venusq2)?0.03:((edgeexplore2||edge1040)?0.01:(edge830?0.03:0.0)))+(1.0/(histrows+1)));
+// 	hmid=(height-clockhight)*(((edge1040||venusq2)?0.05:0.0)+(1.0/(histrows+1)));
+	//higher=0.0;
+ //	hmid=(height-clockhight)*(1.0/(histrows+1));
 
     }
 
@@ -122,22 +132,21 @@ var myTime = System.getClockTime(); // ClockTime object
 var tim=new Time.Moment(val[0]);
 var daginf = Gregorian.info(tim, Time.FORMAT_SHORT);
 //	var dag=(val[0]+zoneof)/(60*60*24);
-
-		dc.drawText(wmid, hmid*(i+1)+2*valueheight-higher, Gfx.FONT_TINY,space+vars[val[2]]+" "+val[1].format("%g")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+		dc.drawText(wmid, hmid*(i+1)+2*valueheight-higher, fontvalue,space+vars[val[2]]+" "+val[1].format("%g")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
 		if(olddag!=null&&(olddag.day==daginf.day&&olddag.year==daginf.year&&daginf.month==olddag.month)) {
-			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, Gfx.FONT_XTINY,space+daginf.hour.format("%02d") + ":" + daginf.min.format("%02d")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") + ":" + daginf.min.format("%02d")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
 			
 			}
 		else {
-			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, Gfx.FONT_XTINY,space+daginf.hour.format("%02d") +":"+ daginf.min.format("%02d")+" "+daginf.day+"-"+months[daginf.month-1]+"-"+daginf.year+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-//			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, Gfx.FONT_XTINY,space+datestr(tim)+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") +":"+ daginf.min.format("%02d")+" "+daginf.day+"-"+months[daginf.month-1]+"-"+daginf.year+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+//			dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+datestr(tim)+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
 		olddag=daginf;
 		}
 		}
 	else {
 
 		dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_PURPLE);
-		dc.drawText(wmid, hmid*(i+1)+valueheight-higher, Gfx.FONT_TINY,"Deleted",Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+		dc.drawText(wmid, hmid*(i+1)+valueheight-higher, fontvalue,"Deleted",Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
 
 }
 		}

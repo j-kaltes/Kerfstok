@@ -21,35 +21,36 @@ var hheight;
 //const	unitlower=venu?0:height*0.038;
 const	unitlower=venu?0:height*0.030;
 const fromh=venusq2?10:0; 
-const ydist=((venusq||venusq2)?(height*.65):(fenix7?(height*.635):(edgeexplore2||edge830)?height*.7:(height*.59)));
+const ydist=((venusq||venusq2)?(height*.65):(fenix7?(height*.635):(edge1040||edgeexplore2||edge830)?height*.7:(height*.59)));
 const ydistunits=(fenix7?(height*.64):(edgeexplore2?(height*.67):(height*.65)));
-const sporttime=(venusq2||fr965)?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MILD;
+const sporttime=(venusq2||fenix8||fenixe||fr965)?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MILD;
 const heartfont=sporttime;
-const speedfont=(venusq2||fenix7)?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
-const glucosefont=(venusq2||fr965)?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT;
-const gpsfont=venusq2?Gfx.FONT_MEDIUM:Gfx.FONT_LARGE;
+const speedfont=(venusq2||fenix8||fenixe||fenix7)?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
+const glucosefont=((venusq2||fenix8||fenixe)||fr965)?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT;
+const gpsfont=(venusq2||fenixe||fenix8)?Gfx.FONT_MEDIUM:Gfx.FONT_LARGE;
 
 const speedunitJust=(fenix7||venusq2||venusq)?(Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT):Gfx.TEXT_JUSTIFY_RIGHT;
-const speedy=fenix7?(height*.61):( venusq2?(height*.65):(( edgeexplore2||edge830)?(height*.48):(fr965?height*.55:(height*.59))));
+const speedy=fenix8?height*0.56:(fenix7?(height*.61):( venusq2?(height*.65):((  edge1040||edgeexplore2||edge830)?(height*.48):(fr965?height*.57:(height*.59)))));
 const lapsfont=fenix7?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MEDIUM;
 var starty,y;
 var 	speedunity;
-const lapvaluey=venusq2?(fh+height*.60):(fr965?height*.52 :( edgeexplore2?(height*.57): (fromh+height*.57)));
-const x=width*.57;
 const fh=fromh-height*0.05;
+const lapvaluey=
+fenix8?height*.54:((venusq2)?(fh+height*.60):(fr965?height*.52 :( edgeexplore2?(height*.57): (fromh+height*.57))));
+const x=width*.57;
 var verh;
 var	lapnamey,timey;
 var hearty;
 function onLayout(dc) {
 	hheight= dc.getFontHeight(sporttime);
 	 gluheight= dc.getFontHeight(glucosefont);
-	starty=((edgeexplore2||edge830)?height*.065:0)+(hheight*.78-gluheight*.2);
+	starty=((edge1040||edgeexplore2||edge830)?height*.065:(fr965?height*.02:0))+(hheight*.78-gluheight*.2);
 	y=starty+gluheight*0.8;
- 	speedunity=marq2?(0.42*height):(fenix7?(0.50*height):(venusq2?(0.51*height):((venusq)?(0.45*height):(edgeexplore2?height*.37:(y+unitlower)))));
- 	lapnamey= venusq2?(y+fh+0.01*height):((edgeexplore2)?0.47*height:( edge830? 0.45*height:(y+fromh+0.01*height)));
-	verh=y-fromh;
+ 	speedunity=marq2?(0.42*height):(fenix7?(0.50*height):(venusq2?(0.51*height):((venusq)?(0.45*height):(edgeexplore2?height*.37:(mk3?(height*.41):(y+unitlower))))));
+ 	lapnamey= (venusq2)?(y+fh+0.01*height):((edge1040||edgeexplore2)?0.47*height:( edge830? 0.45*height:(y+fromh+0.01*height)));
+	verh=(edge830||edge1040)?(starty+gluheight*.95):(y-fromh);
 	dc.setPenWidth(height*.02);
-	if(edgeexplore2) {
+	if(edge1040||edgeexplore2) {
 		timey=0;
 		}
 	else {
@@ -57,7 +58,12 @@ function onLayout(dc) {
 			timey=-hheight*.06;
 			}
 		else  {
-			timey=-hheight*.12;
+            if(fr965) {
+			    timey=-hheight*.06;
+                }
+             else {
+                timey=-hheight*.12;
+                }
 			}
 		}
 

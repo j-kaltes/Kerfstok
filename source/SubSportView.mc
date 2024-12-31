@@ -18,7 +18,7 @@ var from;
 function onShow() {
 }
 function onLayout(dc) {
-	clockhight= dc.getFontHeight(clockfont)/2.7;
+	clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:(edge830?2.1:2.7));
 }
 
 

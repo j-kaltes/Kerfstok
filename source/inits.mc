@@ -70,7 +70,7 @@ function getvars() {
 		precvars=tmpvars;
 		}
 	setvarnr();
-	var maxon=edgeexplore2?6:4;
+	var maxon=(edge1040||edgeexplore2)?6:4;
 	onscr=varnr>maxon?maxon:varnr;
 	rows=maxon;
 	}

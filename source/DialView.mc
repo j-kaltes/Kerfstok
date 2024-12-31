@@ -9,7 +9,7 @@ using Toybox.Time.Gregorian;
 var toshow=1;
 const maxline=11;
 class DialView extends WatchUi.View {
-const numsfont= venusq2?Gfx.FONT_XTINY:((edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
+const numsfont= venusq2?Gfx.FONT_XTINY:((edge1040||edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
 
 
 const	dialnumberfont=venusq2?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
@@ -23,7 +23,8 @@ var timeoff=0.0;
 	variable=vari;
 	nums=numin;
 	timeoff=System.SCREEN_SHAPE_RECTANGLE==screenShape?
-(edgeexplore2?height*.15:(edge830?(theight*0.3):(theight*0.1))):(width>340?theight*0.05:0.0);
+((edge1040||edgeexplore2)?height*.15:(edge830?(theight*0.3):
+((venusq?(theight*0.2):(theight*0.1))))):(width>340?theight*0.05:0.0);
 	}
 
 var vary;
@@ -35,7 +36,7 @@ var numwidth;
 	hnumfont= dim[1]*3/4;
 	xnumbers=wmid-maxline*wnumfont/2;
 	hmidnum=height/2-hnumfont;
-	vary=hmidnum-hnumfont*7/4-(edgeexplore2|edge830?hnumfont:0);
+	vary=hmidnum-hnumfont*7/4-(edge1040||edgeexplore2||edge830?hnumfont:0);
     }
     function onShow() {
 	toshow=1;	

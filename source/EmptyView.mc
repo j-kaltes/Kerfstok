@@ -26,17 +26,19 @@ class EmptyView extends WatchUi.View {
 var hmid;
     function initialize() {
         View.initialize();
-	clockfont= (edgeexplore2||edge830)? Gfx.FONT_TINY:Gfx.FONT_XTINY;
+	clockfont= (edge1040||edgeexplore2||edge830)? Gfx.FONT_TINY:Gfx.FONT_XTINY;
 
 
     }
 function onLayout(dc) {
 	height= dc.getHeight();
 	width= dc.getWidth();
+    System.println("width="+width+" height="+height);
 	wmid=width/2;
 
 	hmid=height/(firstrows+1);
-	clockhight= dc.getFontHeight(clockfont)/2.7;
+	//clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:(fr965||edge830)?2.1:2.7);
+	clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:(edge830?2.1:2.7));
 	theight= dc.getFontHeight(Gfx.FONT_NUMBER_HOT);
   //      WatchUi.pushView(new VarView(), new VarDelegate(new todial()),WatchUi.SLIDE_IMMEDIATE) ; 
 	return true;
