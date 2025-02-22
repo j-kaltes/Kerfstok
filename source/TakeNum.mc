@@ -14,6 +14,9 @@ function receivecolor(num) {
    setcolor(num);
    Communications.transmit([COLORBLACK], null,  new CommListener());   
    }
+function ackReceived() {
+   Communications.transmit([COLORBLACK], null,  new CommListener());   
+   }
 
 var initer=null;
 var venusq=false;

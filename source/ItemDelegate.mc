@@ -151,7 +151,7 @@ if(clickEvent.getType() == CLICK_TYPE_TAP ) {
 							
 							break;
 							}
-						var itemdatanum=moveondate(numbase,datanum,val); 
+						moveondate(numbase,datanum,val); 
 						}
 					else {
 						if(val[1]!=oldval[1]||val[2]!=oldval[2])  {

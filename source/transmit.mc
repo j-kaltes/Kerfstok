@@ -4,36 +4,41 @@ using Toybox.System;
 using Toybox.Application.Storage;
 const maxtransmit=50; //100 gives Error: Out Of Memory Error
 function sendnums(type,base,num) {
-if(lowestchange[base]==null) {
-	num=0;
-	}
-else {
-	if(num>lowestchange[base]) {
-		num=lowestchange[base];
-		}
-	}
-var iter= storageid[base];
-if(num>=iter) {
-	Communications.transmit([NOMORENUMS,base,iter], null,  new CommListener());	
-	return;
-	}
-var len=iter-num;
-if(len>maxstorage) {
-	len=maxstorage;
-	num=iter-len;
-	}
-if(len>maxtransmit) {
-	len=maxtransmit;
-	}
-var data=new[len];
-var it=num;
-for(var i=0;i<len;it++,i++) {
-	data[i]=getval(base,it);
-	}
-transbase(type,base,it,data);
+    if(lowestchange[base]==null) {
+        asklowest();
+        return;
+        }
+    if(num>lowestchange[base]) {
+        num=lowestchange[base];
+        }
+    var iter= storageid[base];
+    if(num>=iter) {
+        Communications.transmit([NOMORENUMS,base,iter], null,  new CommListener());	
+        return;
+        }
+    var len=iter-num;
+    if(len>maxstorage) {
+        len=maxstorage;
+        num=iter-len;
+        }
+    if(len>maxtransmit) {
+        len=maxtransmit;
+        }
+    var data=new[len];
+    var it=num;
+    for(var i=0;i<len;it++,i++) {
+        data[i]=getval(base,it);
+        }
+    transbase(type,base,it,data);
 }
 
 function numdata(base,num) {
+	sendnums(NUMS,base,num);
+	}
+function numdataone(base,num) {
+      if(base==0&&lowestchange[0]==null) {
+            lowestchange[0]=num;
+            }
 	sendnums(NUMS,base,num);
 	}
 
@@ -41,8 +46,16 @@ function havenums(base) {
 	sendnums(HAVENUMS,base,lowestchange[base]);
 	}
 var glucoactive=false;
+
+function 	asklowest() {
+	//Communications.transmit([ASKLOWEST], null,  new CommListener());	
+	//Communications.transmit([START,true], null,  new CommListener());	
+	if(!glucoactive) {
+ 	    startglucose();
+        }
+	}
 function 	startglucose() {
-	Communications.transmit([START], null,  new CommListener());	
+	Communications.transmit([START,lowestchange[0]==null], null,  new CommListener());	
 	glucoactive=true;
 	}
 function 	gotglucose() {

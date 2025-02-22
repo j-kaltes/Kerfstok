@@ -15,7 +15,7 @@ var foreground=Gfx.COLOR_WHITE;
 
 var background=Gfx.COLOR_BLACK;
 
-const maxver=60*3;
+const maxver=30*11;
 //const clockfont= Gfx.FONT_XTINY;
 //var glucose=0.15;
 var glucoserate=0.0;
@@ -136,8 +136,8 @@ function onLayout(dc) {
 				}	
 			}
 		y+=height*0.12;
-		var dlen=width*.6;
-		var beg=dlen*vers/maxver;
+//		var dlen=width*.6;
+//		var beg=dlen*vers/maxver;
 
 		var dims=dc.getTextDimensions(sensorversion,Gfx.FONT_XTINY);
 //		var dimg=dc.getTextDimensions(glucosestr,Gfx.FONT_SYSTEM_NUMBER_THAI_HOT);

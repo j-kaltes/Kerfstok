@@ -40,7 +40,7 @@ function storageinit() {
 	storinit(1);
 	}
 var lowestchange=[0,0];
-function getlowestchange(base) {
+function getStoragelowestchange(base) {
 	if(base==0) {
 		return Storage.getValue("lowest");
 		}
@@ -69,6 +69,10 @@ function instorage(base,id) {
 function getval(base,id) {return Storage.getValue(instorage(base,id));}
 
 function setval(base,id,dat) {
+     if(lowestchange[base]==null) {
+            asklowest();
+            return;
+            }
 	if(id<lowestchange[base]) {
 		setlowestchange(base,id);
 		}
@@ -81,26 +85,28 @@ function delval(base,id) {
 	Storage.deleteValue(instorage(base,id));
 	}
 function putdata(base,begin,end,ar) {
-var len=ar.size();
-var list = new CommListener();
-if((end-begin)!=len) {
-	Communications.transmit([SENDERROR,PUTNUMS], null, list);
-	return;
-	}
-for(var i=0,iter=begin;i<len;i++) {
-	setval2(base,iter,ar[i]);iter++;
-	}
-var oldend=storageid[base];
-if(end>oldend) {
-	setstorageid(base,end);
-	}
-var lowest=lowestchange[base];
-if(oldend<begin||(end-lowest)>maxstorage||(lowest>=begin&&lowest<end)) {
-	setlowestchange(base,end);
-	}
-Communications.transmit([GOTNUMS,base,begin,end], null, list);
+    var len=ar.size();
+    var list = new CommListener();
+    if((end-begin)!=len) {
+        Communications.transmit([SENDERROR,PUTNUMS], null, list);
+        return;
+        }
+    for(var i=0,iter=begin;i<len;i++) {
+        var val=ar[i];
+        setval2(base,iter,val);
+        iter++;
+        }
+    var oldend=storageid[base];
+    if(end>oldend) {
+        setstorageid(base,end);
+        }
+    var lowest=lowestchange[base];
+    if(lowest==null||oldend<begin||(end-lowest)>maxstorage||(lowest>=begin&&lowest<end)) {
+        setlowestchange(base,end);
+        }
+    Communications.transmit([GOTNUMS,base,begin,end], null, list);
 
-WatchUi.requestUpdate();
+    WatchUi.requestUpdate();
 }
 
 //clearValues
@@ -117,7 +123,6 @@ function moveondate(base,id,val) {
 	var grens=storageid[base]>maxstorage?storageid[base]-maxstorage:0;
 	var old= id-1;
 	var naar=id;
-	var endupin;
 	for(;old>=grens;old--) {
 		var was=getval(base,old);
 		if(was) {
@@ -128,7 +133,6 @@ function moveondate(base,id,val) {
 		}
 	if(naar!=id) {
 		setval(base,naar,val);
-		endupin=naar;
 		}
 	else {
 		old=id+1;
@@ -141,21 +145,19 @@ function moveondate(base,id,val) {
 				naar=old;
 				}
 			}
-		endupin=naar;
 		setval(base,naar,val);
 		}
-	return endupin;
 	}
 
 (:debug)function getlastnum(base) {
 return lowestchange[base];
 }
 function setlastnum(base,num) {
-	if(num>lowestchange[base]) {
-		setlowestchange(base,num);
-		}
-
-}
+        var low=lowestchange[base];
+	if(low==null||num>low) {
+            setlowestchange(base,num);
+            }
+        }
 
 
 //var precvars=[0.5,1,1,0.5,1,1,0.1,0,0];

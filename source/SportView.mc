@@ -80,8 +80,8 @@ function onLayout(dc) {
 	var vers=unixnu-glucosetime;
 	
 	if(vers<maxver) {
-		var dlen=width*.6;
-		var beg=dlen*vers/maxver;
+//		var dlen=width*.6;
+//		var beg=dlen*vers/maxver;
 		var dims=dc.getTextDimensions(sensorversion,Gfx.FONT_XTINY);
 		dc.setColor(Gfx.COLOR_PURPLE,Gfx.COLOR_TRANSPARENT);
 		var xid= x-dims[0]/2;

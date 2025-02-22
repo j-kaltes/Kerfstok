@@ -26,7 +26,7 @@ class HistDelegate extends WatchUi.BehaviorDelegate {
 		var toonid= shown[id];
 		var base=shownbase[id];
 		var val=getval(base,toonid);
-		if(val) {
+		if(val&&val[2]>=0&&val[2]<varnr) {
 			WatchUi.pushView(new ItemView(val), new ItemDelegate(base,toonid,val),WatchUi.SLIDE_IMMEDIATE) ;
 			}
 		else {
