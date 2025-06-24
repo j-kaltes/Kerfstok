@@ -12,7 +12,7 @@ class DialView extends WatchUi.View {
 const numsfont= venusq2?Gfx.FONT_XTINY:((edge1040||edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
 
 
-const	dialnumberfont=venusq2?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
+const	dialnumberfont=fr55?Gfx.FONT_NUMBER_MILD:(venusq2?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT);
 var nums;
 
 //var numiter;
@@ -22,9 +22,9 @@ var timeoff=0.0;
         View.initialize();
 	variable=vari;
 	nums=numin;
-	timeoff=System.SCREEN_SHAPE_RECTANGLE==screenShape?
-((edge1040||edgeexplore2)?height*.15:(edge830?(theight*0.3):
-((venusq?(theight*0.2):(theight*0.1))))):(width>340?theight*0.05:0.0);
+	timeoff=instinct3?(theight*-0.05):(System.SCREEN_SHAPE_RECTANGLE==screenShape?
+        ((edge1040||edgeexplore2)?height*.15:(edge830?(theight*0.3):
+        ((venusq?(theight*0.2):(theight*0.1))))):(fr935?theight*0.35:(fr55?theight*.065:((width>340?theight*0.05:0.0)))));
 	}
 
 var vary;
@@ -51,16 +51,26 @@ var numwidth;
 		dc.setColor(Gfx.COLOR_WHITE,Graphics.COLOR_TRANSPARENT );
 		var r=width/2 - numwidth*4/5;
 		var incr=Math.PI/5;
+        if(0==nums.numSelected) {
+            dc.setColor(Graphics.COLOR_BLACK,Gfx.COLOR_WHITE);
+            }
 		dc.drawText(wmid, timeoff ,dialnumberfont,"0",Gfx.TEXT_JUSTIFY_CENTER );
+        if(0==nums.numSelected) {
+            dc.setColor(Gfx.COLOR_WHITE,Graphics.COLOR_TRANSPARENT );
+            }
 		for(var i=1,hoek=incr+Math.PI*3/2;i<10;hoek+=incr,i++) {
-	//	for(var i=0,hoek=Math.PI*3/2;i<10;hoek+=incr,i++) {
 			var x=Math.cos(hoek)*r+width/2;
 			var y=Math.sin(hoek)*r+39*height/80;
+            if(i==nums.numSelected) {
+		        dc.setColor(Graphics.COLOR_BLACK,Gfx.COLOR_WHITE);
+                }
 			dc.drawText(x, y,dialnumberfont,i,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+            if(i==nums.numSelected) {
+		        dc.setColor(Gfx.COLOR_WHITE,Graphics.COLOR_TRANSPARENT );
+                }
 			}
 		dc.drawText(wmid,vary , Gfx.FONT_SMALL,variable, Gfx.TEXT_JUSTIFY_CENTER );
 		var myTime = System.getClockTime(); // ClockTime object
-//		dc.setColor(Gfx.COLOR_BLUE,Graphics.COLOR_TRANSPARENT );
 		dc.drawText(wmid,clockhight , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 		dc.setClip(xnumbers,hmidnum,wnumfont*maxline,hnumfont*10/3);
 		toshow=0;

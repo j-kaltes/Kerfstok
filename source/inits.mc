@@ -7,36 +7,31 @@ using Toybox.Timer;
 using Toybox.Time;
 using Toybox.System;
 using Toybox.Communications;
+import Toybox.Lang;
 var height,width,wmid;
 var    wnumfont,    hnumfont, xnumbers, hmidnum;
 var screenShape;
 
-var memlab=["M0","M1","M2","M3"];
-var memnum=[];
 
-var vars=["Label1","Carbohydrat","Dextro","Label4","Cycle","Walk","Label7","Label8"];
+var vars=["Label1","Carbohydrat","Dextro","Label4","Cycle","Walk","Label7","Label8","Label9"];
 var precvars=[0.5,1,1,0.5,1,1,0.0,0.0,0.0];
 var varnr=7;
 var onscr;
 var from=0;
 
-var speedunits="km/h";
-var distanceunits="km";
 var toshowspeed=60.0*60.0/1000.0;
 var toshowdistance=1.0/1000.0;
-var showdistanceunit=false;
 
 var alarmactive=false;
 
-function timerCallback() {
-    toshow=1;
-    WatchUi.requestUpdate();
-    if(alarmactive) {
-     generatealarm() ;
-      }
-}
+var memnum=[] as Array<Array<Char>>;
 
 class init {
+var memlab=["M0","M1","M2","M3"];
+var showdistanceunit=false;
+var speedunits="km/h";
+var distanceunits="km";
+
 const mile=1609.34;
 var inttimer=null,timerstarter=null;
 const secint=10;
@@ -44,8 +39,15 @@ function settimer() {
     timerstarter = new Timer.Timer();
     timerstarter.start(method(:timesetter), (secint-System.getClockTime().sec%secint)*1000 , false);
      }
-function timesetter() {
-inttimer = new Timer.Timer();
+function timerCallback() as Void {
+    toshow=1;
+    WatchUi.requestUpdate();
+    if(alarmactive) {
+         generatealarm() ;
+          }
+    }
+function timesetter() as Void{
+    inttimer = new Timer.Timer();
     inttimer.start(method(:timerCallback),secint*1000,  true);
     WatchUi.requestUpdate();
 }
@@ -86,12 +88,12 @@ function getsettings() {
      numset=[];
     for(var labnr=0;labnr<memlab.size();labnr++) {
         var num=Storage.getValue("memnum"+labnr);
-        if(num!=null&&(num has :length)&&num.length()) {
+        if(num!=null&&(num has :length)&&num.length()>0) {
             numset.add(labnr);
             memnum.add(num.toCharArray());
             }
         else {
-            memnum.add([]);
+            memnum.add([] as Array<Char>);
             }
         }
     getvars();
@@ -111,7 +113,7 @@ function initdisplay() {
         lapsize=5.0*mile;
         distanceunits="mi";
         }
-    if(sets.distanceUnits!=sets.paceUnits!=System.UNIT_STATUTE) { 
+    if(sets.distanceUnits!=sets.paceUnits) { 
         showdistanceunit=true;
         }
 
@@ -120,22 +122,25 @@ function initdisplay() {
     settimer();
     getmonths() ;
     }
+
+(:debug) 
+function initlowest() {
+    for(var i=0;i<2;i++) {
+           if(lowestchange[i]==null) { 
+                 setlowestchange(i,0); 
+                 } 
+          }
+        }
+(:release) 
+function initlowest() {
+        }
 function initall() {
     storageinit();
     getsettings();
     for(var i=0;i<2;i++) {
         lowestchange[i]=getStoragelowestchange(i);
-    /*    if(lowestchange[i]==null) {
-            setlowestchange(i,0);
-            } */
         } 
-    /*
-    var rev=Storage.getValue("reversecolor");
-    if(rev==null) {
-        rev=1;
-        }
-    setcolor(rev);
-    */
+    initlowest();
     setcolor(Storage.getValue("reversecolor"));
     initdisplay() ;
     readsports();

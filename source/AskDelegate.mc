@@ -2,16 +2,12 @@ using Toybox.WatchUi;
 using Toybox.System;
 using Toybox.Graphics as Gfx;
 using Toybox.Math;
-
+import Toybox.Lang;
 class AskDelegate extends WatchUi.BehaviorDelegate {
     function initialize() {
         BehaviorDelegate.initialize();
     }
-    function onBack() {
-    	onResponse(false);
-	WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-        return true;
-    }
+public function onResponse(response as  Boolean) as Void { }
  function onTap(clickEvent) {
 	if(clickEvent.getType() == CLICK_TYPE_TAP ) { 
 		var co=clickEvent.getCoordinates();
@@ -25,20 +21,29 @@ class AskDelegate extends WatchUi.BehaviorDelegate {
         return true;
     }
 
- function onKey(keyEvent) {
+ function onKey(evt) {
  	if(alarmactive) {
 		 stopalarm();
 	 	}
+     else {
+       var key=evt.getKey();
+       switch(key) { 
+            case Toybox.WatchUi.KEY_ENTER:  {
+    	        onResponse(true);
+	            WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+                break;
+                }
+            case Toybox.WatchUi.KEY_ESC:  {
+    	        onResponse(false);
+	            WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+                break;
+                }
+            default: beep4();
+            }
+       }
 	 return true;
     }
 
-    function onPreviousPage() {
-        return true;
-    }
-
-    function onNextPage() {
-        return true;
-	}
     function onMenu() {
         return true;
     }

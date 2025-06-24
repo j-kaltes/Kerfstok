@@ -14,10 +14,11 @@ var val;
     function onResponse(response) {
         if (response == WatchUi.CONFIRM_YES) {
 		moveondate(base,datanum,val); 
-
 		havenums(base);
 		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); 
+                return true;
 		}
+        return false;
     }
 }
 

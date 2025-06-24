@@ -9,6 +9,7 @@
     <string id="charttitleEN">Energy expenditure (kcals/min)</string> 
     <string id="datalabelEN">Energy expenditure</string>
     <string id="kcalsmin">kcals/min</string>
+
     <string id="venusq">n</string>
     <string id="venusq2">n</string>
     <string id="venu">n</string>
@@ -23,5 +24,14 @@
     <string id="fenixe">n</string>
     <string id="edge840">n</string>
     <string id="fr165">n</string>
+    <string id="venux1">n</string>
+    <string id="vivoactive6">n</string>
+    <string id="fr735xt">n</string>
+    <string id="fr935">n</string>
+    <string id="fr55">n</string>
+    <string id="fr570">n</string>
+    <string id="mk2">n</string>
+    <string id="instinct3">n</string>
+
 
 </resources>

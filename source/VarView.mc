@@ -30,7 +30,13 @@ function onLayout(dc) {
 	for(var i=0;i<onscr;i++) {
 		var val=from+i;
 		if(val<varnr) {
+            if(i==selected) {
+                dc.setColor(background,foreground);
+                }
 			dc.drawText(wmid, hmid*(i+1), Gfx.FONT_MEDIUM,vars[val],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+            if(i==selected) {
+                  dc.setColor(foreground, background);
+                  }
 			}
 		}
 	}

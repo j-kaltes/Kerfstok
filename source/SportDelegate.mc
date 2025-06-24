@@ -35,7 +35,8 @@ function onMenu() {
 	return true;
 
 }
- function onTap(clickEvent) {
+
+function switchtap() {
 	var unixnu=Time.now().value();
 	if(unixnu<notlong) {
 		manualtap(unixnu);
@@ -44,14 +45,23 @@ function onMenu() {
 	else {
 		notlong=unixnu+2;
 		}
+        }
+ function onTap(clickEvent) {
+        switchtap();
         return true;
     }
- function onKey(keyEvent) {
+ function onKey(evt) {
  	if(alarmactive) {
 		 stopalarm();
 	 	}
 	else {
-		askstopsport();
+                var key=evt.getKey();
+                if(key==Toybox.WatchUi.KEY_MENU) {
+                        switchtap();
+                        }
+                else {
+                    askstopsport();
+                    }
 		}
         return true;
     }

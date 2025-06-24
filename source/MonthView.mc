@@ -52,9 +52,26 @@ var myTime = System.getClockTime(); // ClockTime object
 	for(var i=0,hoek=Math.PI*3/2;i<10;hoek+=incr,i++) {
 		var x=Math.cos(hoek)*r+width/2;
 		var y=Math.sin(hoek)*r+39*height/80;
+         if(i==selected) {
+               dc.setColor(background,foreground);
+               }
 		dc.drawText(x, y,monthfont,months[i],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+         if(i==selected) {
+	           dc.setColor(foreground, Graphics.COLOR_TRANSPARENT );
+               }
 		}
+     if(10==selected) {
+           dc.setColor(background,foreground);
+           }
 	dc.drawText(wmid, height*2/5,monthfont,months[10],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+     if(10==selected) {
+	       dc.setColor(foreground, Graphics.COLOR_TRANSPARENT );
+           }
+    else {
+         if(11==selected) {
+               dc.setColor(background,foreground);
+               }
+        }
 	dc.drawText(wmid, height*3/5,monthfont,months[11],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
 	}
 }

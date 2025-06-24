@@ -4,21 +4,21 @@ using Toybox.System;
 using Toybox.Math;
 using Toybox.Time;
 using Toybox.ActivityRecording;
+using Toybox.Lang;
 
 class StopSportConfirmationDelegate extends AskDelegate {
     function initialize() {
         AskDelegate.initialize();
-        ConfirmationDelegate.initialize();
     }
 
     function onResponse(response) {
-        if (response == WatchUi.CONFIRM_YES) {
-        sportdel.stopsport();
-        sportdel=null;
-        }
-    else {
-        activityrecord.start();
-        }
+        if(response) {
+            sportdel.stopsport();
+            sportdel=null;
+            }
+        else {
+            activityrecord.start();
+            }
     }
 }
 
@@ -37,13 +37,23 @@ function mkglucose() {
     var dirval=Math.rand()%5;
     var trend= dir*dirval;
     var gegs=["3MH0045FKCD",unixnu, val,trend,0,unit];
-    System.println("dir="+dir+" dirval="+dirval+" trend="+trend);
     unititer++;
     setglucose(gegs);
     }
+(:release) 
+function mkglucose() {
+    }
 
-function askstopsport() {
-         if( activityrecord != null  &&activityrecord.isRecording() == true ) {
+ function       switchcolor() {
+        if(currentcolor==1) {
+                setcolor(0);
+                }
+         else {
+                setcolor(1);
+                }
+        }
+public function askstopsport() as Lang.Boolean {
+     if( activityrecord != null  &&activityrecord.isRecording() == true ) {
          activityrecord.stop();
         if(sportdel!=null) {
             WatchUi.pushView(new AskView("Paused","Stop "+sports[nextsport[splen]][0]+"?"), new StopSportConfirmationDelegate(), WatchUi.SLIDE_IMMEDIATE);
@@ -65,24 +75,34 @@ class GlucoseDelegate extends WatchUi.BehaviorDelegate {
     mkglucose();
     return true;
     }
- function onKey(keyEvent) {
+function onHold(clickEvent) {
+        switchcolor();
+        return true;
+        }
+ function onKey(evt) {
     if(alarmactive) {
         stopalarm();
         }
     else {
-        askstopsport();
+       var key=evt.getKey();
+       switch(key) {
+        case Toybox.WatchUi.KEY_DOWN: {
+            mkglucose();
+            break;
+            }
+        case Toybox.WatchUi.KEY_UP: {
+                switchcolor();
+                break;
+                }
+        default: {
+            askstopsport();
+             }
+           }
         }
         return true;
 
     }
     function onSwipe(swipe) {
     return false;
-    }
-    function onPreviousPage() {
-        return true;
-    }
-
-    function onNextPage() {
-        return true;
     }
 }

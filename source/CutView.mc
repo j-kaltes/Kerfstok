@@ -23,11 +23,19 @@ function onLayout(dc) {
 	 dc.clear();
 var myTime = System.getClockTime(); // ClockTime object
 	dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
-	for(var i=0;i<geg.onscr;i++) {
+    var maxon=shortcuts.size()-geg.from;
+    if(geg.onscr<maxon) {
+        maxon=geg.onscr;
+        }
+	for(var i=0;i<maxon;i++) {
 		var val=geg.from+i;
-		if(val<shortcuts.size()) {
-			dc.drawText(wmid, hmid*(i+1), Gfx.FONT_MEDIUM,shortcuts[val][0],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-			}
+        if(i==geg.cutSelected) {
+            dc.setColor(background,foreground);
+            }
+        dc.drawText(wmid, hmid*(i+1), Gfx.FONT_MEDIUM,shortcuts[val][0],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+        if(i==geg.cutSelected) {
+              dc.setColor(foreground, background);
+              }
 		}
 	}
 

@@ -4,6 +4,7 @@ using Toybox.System;
 using Toybox.Application.Storage;
 var rows=4;
 class SportListView extends WatchUi.View {
+var sportSelected=-1;
 var hmid;
 var  start,end,iter;
     function initialize(startin,endin) {
@@ -11,6 +12,9 @@ var  start,end,iter;
 	start=startin;
 	end=endin;
 	hmid=height/(rows+1);
+        if(selected>=0) {
+            sportSelected=0;
+            }
     }
 
 function onShow() {
@@ -30,7 +34,13 @@ function onLayout(dc) {
 		if(iter>=end) {
 			break;
 			}
+        if(i==sportSelected) {
+            dc.setColor(background,foreground);
+            }
 		dc.drawText(wmid, hmid*(i+1), Gfx.FONT_XTINY,sports[iter][0],Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+        if(i==sportSelected) {
+             dc.setColor(foreground, background);
+               }
 		iter=nextsport[iter];
 		}
 	}

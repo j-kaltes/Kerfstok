@@ -110,7 +110,7 @@ function tokenize(chars,len) {
 	var oper=1;
 	var neg=1;
 	for(var i=0;i<len;i++) {
-		var el;
+		var el='0';
 		for(;i<len;i++) {
 			el=chars[i];
 			if(el>='0'&&el<='9') {

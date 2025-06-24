@@ -16,6 +16,7 @@ function onShow() {
 function onLayout(dc) {
 }
 
+var measurefont=fr735xt?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 
     function onUpdate(dc) { 
 	dc.clearClip();
@@ -47,7 +48,7 @@ function onLayout(dc) {
 		 var lab=infostr[iter];
 		dc.drawText(wmid, hmid*i, Gfx.FONT_XTINY,lab,Gfx.TEXT_JUSTIFY_CENTER );
 		i++;
-		dc.drawText(wmid, hmid*(i+0.4),Gfx.FONT_NUMBER_MEDIUM,""+res,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+		dc.drawText(wmid, hmid*(i+0.4),measurefont,""+res,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 		}
 	}
 

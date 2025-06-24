@@ -17,73 +17,80 @@ const baseapart=maxstorage;
 
 
 function getstorageid(base) {
-	return -base-1;
-	}
+    return -base-1;
+    }
 function setstorageid(base,end) {
-	storageid[base]=end;
-	Storage.setValue(getstorageid(base),end);
-	}
+    storageid[base]=end;
+    Storage.setValue(getstorageid(base),end);
+    }
 
 
 function storinit(base)  {
-	var id=Storage.getValue(getstorageid(base));
-	if(id) {
-		storageid[base]=id;
-		}
-	else {
-		storageid[base]=0;
-		}
-	}
+    var id=Storage.getValue(getstorageid(base));
+    if(id) {
+        storageid[base]=id;
+        }
+    else {
+        storageid[base]=0;
+        }
+    }
 
 function storageinit() {
-	storinit(0);
-	storinit(1);
-	}
+    storinit(0);
+    storinit(1);
+    }
 var lowestchange=[0,0];
 function getStoragelowestchange(base) {
-	if(base==0) {
-		return Storage.getValue("lowest");
-		}
-	else {
-		return Storage.getValue("lowest1");
-		}
-	}
+    if(base==0) {
+        return Storage.getValue("lowest");
+        }
+    else {
+        return Storage.getValue("lowest1");
+        }
+    }
 var oldlowest=[-1,-1];
 function setlowestchange(base,id) {
-	 oldlowest[base]=lowestchange[base];
-	if(base==0) {
-		 Storage.setValue("lowest",id);
-		 lowestchange[base]=id;
-		 }
-	else {
-		 Storage.setValue("lowest1",id);
-		 lowestchange[base]=id;
+    oldlowest[base]=lowestchange[base];
+    if(base==0) {
+         Storage.setValue("lowest",id);
+         lowestchange[base]=id;
+         }
+    else {
+         Storage.setValue("lowest1",id);
+         lowestchange[base]=id;
 
-	}
-	}
+    }
+    }
 
 function instorage(base,id) {
-	return (id%maxstorage)+base*baseapart;
-	}
+    var res= (id%maxstorage)+base*baseapart;
+    return res;
+    }
 
-function getval(base,id) {return Storage.getValue(instorage(base,id));}
+function getval(base,id) {
+    var res=Storage.getValue(instorage(base,id));
+//    System.println("getval="+res);
+    return res;
+    }
 
 function setval(base,id,dat) {
      if(lowestchange[base]==null) {
             asklowest();
             return;
             }
-	if(id<lowestchange[base]) {
-		setlowestchange(base,id);
-		}
-	 Storage.setValue(instorage(base,id),dat);
-	}
+    if(id<lowestchange[base]) {
+        setlowestchange(base,id);
+        }
+    Storage.setValue(instorage(base,id),dat);
+//    System.println("setval "+dat);
+    }
 function setval2(base,id,dat) {
-	 Storage.setValue(instorage(base,id),dat);
-	}
+     Storage.setValue(instorage(base,id),dat);
+//    System.println("setval2 "+dat);
+    }
 function delval(base,id) { 
-	Storage.deleteValue(instorage(base,id));
-	}
+    Storage.deleteValue(instorage(base,id));
+    }
 function putdata(base,begin,end,ar) {
     var len=ar.size();
     var list = new CommListener();
@@ -111,117 +118,121 @@ function putdata(base,begin,end,ar) {
 
 //clearValues
 function clearnums() {
-	Storage.clearValues();
-	storageid[0]=0;
-	storageid[1]=0;
-	Storage.setValue(-1,storageid[0]);
-	Storage.setValue(-2,storageid[1]);
-	}
+    Storage.clearValues();
+    storageid[0]=0;
+    storageid[1]=0;
+    Storage.setValue(-1,storageid[0]);
+    Storage.setValue(-2,storageid[1]);
+    }
 function moveondate(base,id,val) {
-//	var val=getval(base,id);
-	var tim=val[0];
-	var grens=storageid[base]>maxstorage?storageid[base]-maxstorage:0;
-	var old= id-1;
-	var naar=id;
-	for(;old>=grens;old--) {
-		var was=getval(base,old);
-		if(was) {
-			if(was[0]<=tim) {break;}
-			setval(base,naar,was);
-			naar=old;
-			}
-		}
-	if(naar!=id) {
-		setval(base,naar,val);
-		}
-	else {
-		old=id+1;
-		naar=id;
-		for(;old<storageid[base];old++){
-			var was=getval(base,old);
-			if(was) {
-				if(was[0]>=tim) {break;}
-				setval(base,naar,was);
-				naar=old;
-				}
-			}
-		setval(base,naar,val);
-		}
-	}
+//    var val=getval(base,id);
+    var tim=val[0];
+    var grens=storageid[base]>maxstorage?storageid[base]-maxstorage:0;
+    var old= id-1;
+    var naar=id;
+    for(;old>=grens;old--) {
+        var was=getval(base,old);
+        if(was) {
+            if(was[0]<=tim) {break;}
+            setval(base,naar,was);
+            naar=old;
+            }
+        }
+    if(naar!=id) {
+        setval(base,naar,val);
+        }
+    else {
+        old=id+1;
+        naar=id;
+        for(;old<storageid[base];old++){
+            var was=getval(base,old);
+            if(was) {
+                if(was[0]>=tim) {break;}
+                setval(base,naar,was);
+                naar=old;
+                }
+            }
+        setval(base,naar,val);
+        }
+    }
 
 (:debug)function getlastnum(base) {
 return lowestchange[base];
 }
 function setlastnum(base,num) {
-        var low=lowestchange[base];
-	if(low==null||num>low) {
-            setlowestchange(base,num);
-            }
-        }
+    var low=lowestchange[base];
+    if(low==null||num>low) {
+          setlowestchange(base,num);
+         }
+   }
 
 
 //var precvars=[0.5,1,1,0.5,1,1,0.1,0,0];
 function setvarnr() {
-	varnr=(vars.size()<precvars.size())?vars.size():precvars.size();
-	}
+    varnr=(vars.size()<precvars.size())?vars.size():precvars.size();
+    }
 function putprec(ar) {
-	if(ar!=null&&ar.size()>0) {
-		precvars=ar;
-		setvarnr() ;
-		Storage.setValue("preclabels",precvars);
-		}
-	Communications.transmit([RECEIVEDPRECISION], null,  new CommListener());	
-	}
+    if(ar!=null&&ar.size()>0) {
+        precvars=ar;
+        setvarnr() ;
+        Storage.setValue("preclabels",precvars);
+        }
+    Communications.transmit([RECEIVEDPRECISION], null,  new CommListener());    
+    }
 function putlabels(ar) {
-	if(ar!=null&&ar.size()>0) {
-		vars=ar;
-		setvarnr() ;
-		Storage.setValue("labels",vars);
-		}
-	Communications.transmit([RECEIVEDLABELS], null,  new CommListener());	
-	WatchUi.requestUpdate();
-	}
+    if(ar!=null&&ar.size()>0) {
+        vars=ar;
+        setvarnr() ;
+        Storage.setValue("labels",vars);
+        }
+    Communications.transmit([RECEIVEDLABELS], null,  new CommListener());    
+    WatchUi.requestUpdate();
+    }
+(:debug)
+var shortcuts=[["one","1"],["two","2"],["three","3"],["four","4"],["Five","5"],["Six","6"]];
+(:release)
 var shortcuts=[];
+
 function putcuts(ar) {
-	Storage.setValue("shortcuts",ar);
-	shortcuts=ar;	
-	Communications.transmit([RECEIVEDCUTS], null,  new CommListener());	
-	WatchUi.requestUpdate();
-	}
+    Storage.setValue("shortcuts",ar);
+    shortcuts=ar;    
+    Communications.transmit([RECEIVEDCUTS], null,  new CommListener());    
+    WatchUi.requestUpdate();
+    }
 
 
 
 function deletethrough(base,datanum) {
-	delval(base,datanum);
-	if(datanum==(storageid[base]-1)) {/*Wordt er dan wel duidelijk gemaakt dat data verwijdered is?*/
-		var grens=storageid[base]>maxstorage?storageid[base]-maxstorage:0;
-		var i=storageid[base]-2;
-		for(;i>=grens&&getval(base,i)==null;i--) {
-			}
+    delval(base,datanum);
+    if(datanum==(storageid[base]-1)) {/*Wordt er dan wel duidelijk gemaakt dat data verwijdered is?*/
+        var grens=storageid[base]>maxstorage?storageid[base]-maxstorage:0;
+        var i=storageid[base]-2;
+        for(;i>=grens&&getval(base,i)==null;i--) {
+            }
 
-	       setstorageid(base,i+1);
-		return storageid[base];
-		}
-	return datanum;
-	}
+           setstorageid(base,i+1);
+        return storageid[base];
+        }
+    return datanum;
+    }
 function delete(base,datanum) {
-	var deldat=deletethrough(base,datanum);
-	if(lowestchange[base]==null||deldat<lowestchange[base]) {
-		setlowestchange(base,deldat);
-		}
+    var deldat=deletethrough(base,datanum);
+    if(lowestchange[base]==null||deldat<lowestchange[base]) {
+        setlowestchange(base,deldat);
+        }
 
-//	havenums(base);
-	senddelete(base,datanum);
+//    havenums(base);
+    senddelete(base,datanum);
 
-	WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-	}
+    WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    }
 
 function deletedsend(base,num)  {
-	if(num==lowestchange[base]) {
-		var old=oldlowest[base];	
-		if(old>lowestchange[base]) {
-			setlowestchange(base,old);
-			}
+    if(num==lowestchange[base]) {
+        var old=oldlowest[base];    
+        if(old>lowestchange[base]) {
+            setlowestchange(base,old);
+            }
 
-		}
-	}
+        }
+    }

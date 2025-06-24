@@ -13,7 +13,12 @@ var datanum;
     function onResponse(response) {
         if (response == WatchUi.CONFIRM_YES) {
 		delete(base,datanum);
-        }
+                if(histselected>0) {
+                        --histselected;
+                        }
+                 return true;
+                 }
+        return false;
     }
 }
 

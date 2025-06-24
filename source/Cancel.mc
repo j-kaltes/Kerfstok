@@ -6,9 +6,10 @@ class CancelConfirmationDelegate extends WatchUi.ConfirmationDelegate {
     }
 
     function onResponse(response) {
-        if (response == WatchUi.CONFIRM_YES) {
-		WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
-		}
-    }
+        if(response == WatchUi.CONFIRM_YES) {
+            WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+		    }
+        return true;
+      }
 }
 

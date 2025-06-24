@@ -13,6 +13,8 @@ var histrows=4;
 
 class HistView extends WatchUi.View {
 const space="                                                        ";
+const selspaceleft="                                                      >>";
+const selspaceright="<<                                                     ";
 
 var nonsense=[0,0,0];
 var hmid;
@@ -21,9 +23,10 @@ var fontvalue= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:((edgeexplore2||edge83
 
 var fonttimedate= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:(edgeexplore2?Gfx.FONT_SMALL:(edge830?Gfx.FONT_SMALL:Gfx.FONT_XTINY));
 
-const valueheight=(edgeexplore2||edge840||fr165)?clockhight*.9:
-((edge1040||venusq||venusq2)?clockhight*.8:
-(edge830?clockhight*.7:clockhight*.85));
+const valueheight=
+(edgeexplore2||edge840||fr165||venux1)?clockhight*.9:
+((edge1040||venusq||venusq2||fr935||fr55)?clockhight*.8:
+(edge830?clockhight*.7:(fenix8?clockhight*.95:clockhight*.87)));
 //const valueheight=clockhight;
 //var space="                ";
     function initialize() {
@@ -32,7 +35,7 @@ const valueheight=(edgeexplore2||edge840||fr165)?clockhight*.9:
      shownbase=new[histrows];
     showiter0=storageid[0]-1;
     showiter1=storageid[1]-1;
-    higher=(venusq2)?(height*0.0357):((edgeexplore2||edge1040)?(height*0.029):(edge830?height*0.06:
+    higher=venux1?(height*0.06):(venusq2)?(height*0.0357):((edgeexplore2||edge1040)?(height*0.029):(edge830?height*0.06:
 (venusq?(height*0.03):0.0)));
 //    higher=venusq2?(height*0.055):0.0;
      hmid=(height-clockhight)*(((venusq||venusq2)?0.03:((edgeexplore2||edge1040)?0.01:(edge830?0.03:0.0)))+(1.0/(histrows+1)));
@@ -59,7 +62,7 @@ function onUpdate(dc) {
     var myTime = System.getClockTime(); // ClockTime object
     dc.drawText(wmid,clockhight , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 
-    var olddag=null;
+    var olddag=null as Gregorian.Info;
 
     item0=showiter0;
     item1=showiter1;
@@ -91,17 +94,17 @@ function onUpdate(dc) {
             break;
             }
      if(utime0<utime1) {
-         shown[i]=item1;
+        shown[i]=item1;
         shownbase[i]=1;
-         val=val1;
+        val=val1;
         item1--;
          }
     else {
-         shown[i]=item0;
+        shown[i]=item0;
         shownbase[i]=0;
-         val=val0;
+        val=val0;
         item0--;
-         }
+        }
     if(val&&val[2]>=0&&val[2]<varnr) {
        var vartype=val[2]; 
         switch(vartype) {
@@ -128,19 +131,27 @@ function onUpdate(dc) {
             default: dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
             }
 
-    var tim=new Time.Moment(val[0]);
-    var daginf = Gregorian.info(tim, Time.FORMAT_SHORT);
-    //    var dag=(val[0]+zoneof)/(60*60*24);
-            dc.drawText(wmid, hmid*(i+1)+2*valueheight-higher, fontvalue,space+vars[vartype]+" "+val[1].format("%g")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-            if(olddag!=null&&(olddag.day==daginf.day&&olddag.year==daginf.year&&daginf.month==olddag.month)) {
-                dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") + ":" + daginf.min.format("%02d")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-                
-                }
-            else {
-                dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") +":"+ daginf.min.format("%02d")+" "+daginf.day+"-"+months[daginf.month-1]+"-"+daginf.year+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-    //            dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+datestr(tim)+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
-            olddag=daginf;
+        var tim=new Time.Moment(val[0]);
+        var daginf = Gregorian.info(tim, Time.FORMAT_SHORT);
+        var leftspace,rightspace;
+        if(i==histselected) {
+           leftspace=selspaceleft;
+           rightspace=selspaceright;
             }
+       else {
+            leftspace=space;
+            rightspace=space;
+            }
+
+        dc.drawText(wmid, hmid*(i+1)+2*valueheight-higher, fontvalue,leftspace+vars[vartype]+" "+val[1].format("%g")+rightspace,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+        if(olddag!=null&&(olddag.day==daginf.day&&olddag.year==daginf.year&&daginf.month==olddag.month)) {
+                    dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") + ":" + daginf.min.format("%02d")+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+                    
+                    }
+        else {
+             dc.drawText(wmid, hmid*(i+1)-valueheight-higher, fonttimedate,space+daginf.hour.format("%02d") +":"+ daginf.min.format("%02d")+" "+daginf.day+"-"+months[daginf.month-1]+"-"+daginf.year+space,Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_CENTER );
+                olddag=daginf;
+                }
         }
         else {
             dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_PURPLE);

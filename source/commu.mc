@@ -2,6 +2,7 @@ using Toybox.System;
 using Toybox.Communications;
 using Toybox.Time;
 using Toybox.SensorHistory;
+import Toybox.Lang;
 //using Toybox.Time.Gregorian;
 // Create a method to get the SensorHistoryIterator object
 
@@ -27,7 +28,7 @@ var list = new CommListener();
 var uit=[type,mess.size(),tim,mess];
 	Communications.transmit(uit, null, list);
 }
-function     transbase(type,base,tim,mess) {
+function     transbase(type as Number,base as Number,tim as Number,mess) {
 var list = new CommListener();
 var uit=[type,base,mess.size(),tim,mess];
 	Communications.transmit(uit, null, list);
