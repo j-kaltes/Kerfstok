@@ -192,6 +192,14 @@ if(WatchUi.loadResource(Rez.Strings.fenix7).equals("y")) {
         selected=2;
         return;
         }
+   if(WatchUi.loadResource(Rez.Strings.approach).equals("y")) {
+        fenix7=true;
+        return;
+        }
+   if(WatchUi.loadResource(Rez.Strings.keys5).equals("y")) {
+        selected=2;
+        return;
+        }
     }
 function initialize() {
     AppBase.initialize();

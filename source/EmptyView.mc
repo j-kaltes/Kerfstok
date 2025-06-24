@@ -91,9 +91,9 @@ function showitem(dc,pos,str) {
         var myTime = System.getClockTime(); // ClockTime object
         dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
                 showitem(dc,1,"Input");
-        if(storageid[0]>0||storageid[1]>0) {
-                        showitem(dc,2,"View");
-            }
+                if(storageid[0]>0||storageid[1]>0) {
+                                showitem(dc,2,"View");
+                    }
                 showitem(dc,3,"Watch face");
                 showitem(dc,4,"Sport");
                 }
@@ -151,8 +151,19 @@ public function processKey(evt as WatchUi.KeyEvent,maxitem) as Lang.Boolean {
                         selectview(varselected);
                      }
                 else {
+                   if(res!=1||storageid[0]>0||storageid[1]>0) {
                         varselected=res;
                        }
+                   else {
+                          if(varselected==0) {
+                             varselected=2;
+                             }
+                         else {
+                             varselected=0;
+                            }
+                        }
+
+                      }
                }
           else  {
             askstopsport();
