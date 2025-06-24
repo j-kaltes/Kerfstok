@@ -102,6 +102,12 @@ if(WatchUi.loadResource(Rez.Strings.fenix7).equals("y")) {
    fenix7=true;
    return;
    }
+if(WatchUi.loadResource(Rez.Strings.fenix5).equals("y")) {
+   selected=2;
+
+   fr935=true;
+   return;
+   }
    if(WatchUi.loadResource(Rez.Strings.marq2).equals("y")) {
       marq2=true;
       selected=2;

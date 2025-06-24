@@ -82,16 +82,16 @@ class GlucoseView extends WatchUi.View {
 
 
 var timefont=fr55?Gfx.FONT_NUMBER_MEDIUM:Gfx.FONT_NUMBER_HOT;
-var yorg=height*(fr735xt?0.52:.58);
 var glucosefont=(fenixe||fr55)?Gfx.FONT_SYSTEM_NUMBER_MEDIUM:((fenix8||fr735xt)?Gfx.FONT_SYSTEM_NUMBER_HOT:Gfx.FONT_SYSTEM_NUMBER_THAI_HOT);
 var heartfont=(fenixe||fenix8||fr55||fr570)?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 var heartheight;
 var timeoff=0;
 var datey;
 var hearty;
+var yorg=height*(fr735xt?0.52:.58);
 function onLayout(dc) {
     heartheight= dc.getFontHeight(heartfont);
-    hearty=height-heartheight*(fr935?1.1:.88);
+    hearty=height-heartheight*((fr935)?1.1:.88);
     density=2.0*width/396.0;
      if(System.SCREEN_SHAPE_RECTANGLE == screenShape) {
         if(!(edge1040||edgeexplore2|| edge830)) {
@@ -162,11 +162,8 @@ function onLayout(dc) {
                 }    
             }
         y+=height*0.12;
-//        var dlen=width*.6;
-//        var beg=dlen*vers/maxver;
 
         var dims=dc.getTextDimensions(sensorversion,Gfx.FONT_XTINY);
-//        var dimg=dc.getTextDimensions(glucosestr,Gfx.FONT_SYSTEM_NUMBER_THAI_HOT);
         dc.setColor(Gfx.COLOR_PURPLE,background);
         var xid=x-dims[0]/2;
         dc.fillRectangle(xid, y, dims[0]*vers/maxver, dims[1]);
