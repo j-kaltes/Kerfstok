@@ -4,7 +4,9 @@ It can be installed from: https://apps.garmin.com/en-US/apps/b6348ccc-86d8-4780-
 It should be used with Juggluco, https://www.juggluco.nl/Juggluco/index.html
 
 With it, you can enter numbers under a certain label on your watch. These numbers are sent to Juggluco.
-If you have a Freestyle Libre 2 sensor in you arm, Kerfstok can also display your current glucose value on your watch. The FreeStyle Libre 2 sensor sends via Bluetooth every minute the glucose level to Juggluco running on Android and Juggluco sends this to Kerfstok on a Garmin watch also via Bluetooth.
+If you have a Sibionics GS1, Dexcom G7/ONE+ or Freestyle Libre 2,2+,3 or 3+ sensor in your arm, 
+Kerfstok can also display your current glucose value on your watch. The sensor sends via Bluetooth the glucose level to 
+Juggluco running on Android and Juggluco sends this to Kerfstok on a Garmin watch also via Bluetooth.
 
 I published the source of Kerfstok so people can modify it to fit their taste.
 
