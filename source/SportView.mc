@@ -45,7 +45,7 @@ function onLayout(dc) {
     hheight= dc.getFontHeight(sporttime);
      gluheight= dc.getFontHeight(glucosefont);
      if(fr935) {
-        starty=hheight;
+        starty=hheight*1.2;
         }
      else {
         if(fr570) {
@@ -90,8 +90,13 @@ function onLayout(dc) {
                     timey=-hheight*.18;
                     }
                  else {
-                    timey=-hheight*.12;
-                     }
+                      if(fr935)  {
+                          timey=hheight*.08;
+                          }
+                      else {
+                          timey=-hheight*.12;
+                         }
+                       }
                     }
                 }
              }
@@ -176,7 +181,7 @@ function onLayout(dc) {
         }
     if(unixnu<endlap) {
         dc.drawText(width*.04, lapnamey , Gfx.FONT_XTINY,lapstr1,Gfx.TEXT_JUSTIFY_LEFT );
-        dc.drawText(0, lapvaluey , lapsfont,lapstr2,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_LEFT ); 
+        dc.drawText(width*.02, lapvaluey , lapsfont,lapstr2,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_LEFT ); 
         }
 
 

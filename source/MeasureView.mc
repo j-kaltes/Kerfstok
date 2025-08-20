@@ -16,7 +16,7 @@ function onShow() {
 function onLayout(dc) {
 }
 
-var measurefont=fr735xt?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
+var measurefont=(fr735xt||fr935)?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 
     function onUpdate(dc) { 
 	dc.clearClip();
@@ -24,7 +24,7 @@ var measurefont=fr735xt?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 	dc.setColor(foreground, background);
 	 dc.clear();
 	var myTime = System.getClockTime(); // ClockTime object
-	dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d")+":"+myTime.sec.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+	dc.drawText(wmid, clockhight*1.25, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d")+":"+myTime.sec.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 
 //	dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_TRANSPARENT);
 	dc.setColor(foreground, Gfx.COLOR_TRANSPARENT );
@@ -48,7 +48,7 @@ var measurefont=fr735xt?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
 		 var lab=infostr[iter];
 		dc.drawText(wmid, hmid*i, Gfx.FONT_XTINY,lab,Gfx.TEXT_JUSTIFY_CENTER );
 		i++;
-		dc.drawText(wmid, hmid*(i+0.4),measurefont,""+res,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+		dc.drawText(wmid, hmid*(i+0.48),measurefont,""+res,Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 		}
 	}
 
