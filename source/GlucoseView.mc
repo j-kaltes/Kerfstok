@@ -131,7 +131,7 @@ function onLayout(dc) {
         datey = theight*.7+timeoff;
         }
       else {
-        datey = ((edge1040||edgeexplore2)?height*.05:0)+(theight*.8+timeoff);
+        datey = ((edge1040||edgeexplore2||edge830)?height*.05:0)+(theight*.8+timeoff);
         }
      }
 }
@@ -139,7 +139,7 @@ function onLayout(dc) {
 
 
 
-    function onUpdate(dc) { 
+function onUpdate(dc) { 
     dc.clearClip();
     dc.setColor(foreground, background);
      dc.clear();

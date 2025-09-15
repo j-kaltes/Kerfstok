@@ -85,6 +85,10 @@ function initmessages() {
 //    function onPosition(info) { }
 
 function watchversions() {
+
+   if(WatchUi.loadResource(Rez.Strings.keys5).equals("y")) {
+        selected=2;
+        }
    if(WatchUi.loadResource(Rez.Strings.venusq).equals("y")) {
       venusq=true;
       return;
@@ -147,10 +151,12 @@ if(WatchUi.loadResource(Rez.Strings.fenix5).equals("y")) {
    if(WatchUi.loadResource(Rez.Strings.edge1040).equals("y"))   {
        edge1040=true;
        histrows=8;
+       selected=2;
        return;
        }
    if(WatchUi.loadResource(Rez.Strings.edge840).equals("y"))   {
        histrows=5;
+       selected=2;
        edge840=true;
        edge830=true;
        return;
@@ -200,10 +206,6 @@ if(WatchUi.loadResource(Rez.Strings.fenix5).equals("y")) {
         }
    if(WatchUi.loadResource(Rez.Strings.approach).equals("y")) {
         fenix7=true;
-        return;
-        }
-   if(WatchUi.loadResource(Rez.Strings.keys5).equals("y")) {
-        selected=2;
         return;
         }
     }

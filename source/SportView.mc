@@ -61,7 +61,8 @@ function onLayout(dc) {
             }
          }
     y=starty+gluheight*0.8;
-     speedunity=marq2?(0.42*height):(fenix7?(0.50*height):(venusq2?(0.51*height):((venusq)?(0.45*height):(edgeexplore2?height*.37:(mk3?(height*.41):(mk2?(height*.45):(y+unitlower)))))));
+//     speedunity=marq2?(0.42*height):(fenix7?(0.50*height):(venusq2?(0.51*height):((venusq)?(0.45*height):(edgeexplore2?height*.37:(mk3?(height*.41):(mk2?(height*.45):(y+unitlower)))))));
+     speedunity=marq2?(0.42*height):(fenix7?(0.50*height):(venusq2?(0.51*height):((venusq)?(0.45*height):((edgeexplore2||edge1040)?height*.36:(mk3?(height*.41):(mk2?(height*.45):(y+unitlower)))))));
      lapnamey= (venusq2)?(y+fh+0.01*height):((edge1040||edgeexplore2)?0.47*height:( edge830? 0.45*height:(y+fromh+0.01*height)));
 
     verh=(edge830||edge1040)?(starty+gluheight*.95):(fr735xt?y*1.05:(fr935?y*1.2:(y-fromh)));

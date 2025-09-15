@@ -20,7 +20,7 @@ class HistDelegate extends WatchUi.BehaviorDelegate {
 	return true;
     }
 function selitem(id) {
-	if(id<maxshown) {
+	if(id>=0&&id<maxshown) {
 		var toonid=shown[id];
 		var base=shownbase[id];
 		var val=getval(base,toonid);
@@ -72,7 +72,7 @@ public function processKey(evt as WatchUi.KeyEvent) as Lang.Boolean {
        switch(key) { 
             case Toybox.WatchUi.KEY_DOWN:  {
                 ++histselected;
-                if(histselected>3) {
+                if(histselected>=histrows) {
                       if(next()) {
                             histselected=0;
                             }
@@ -93,7 +93,7 @@ public function processKey(evt as WatchUi.KeyEvent) as Lang.Boolean {
                 --histselected;
                 if(histselected<0) {
                         if(previous()) {
-                            histselected=3;
+                            histselected=histrows-1;
                             }
                         else {
                               ++histselected;
