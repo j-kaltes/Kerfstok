@@ -101,6 +101,10 @@ function watchversions() {
     venu=true;
     return;
     }
+ if(WatchUi.loadResource(Rez.Strings.venu4).equals("y")) {
+    fenix8=true;
+    return;
+    }
 if(WatchUi.loadResource(Rez.Strings.fenix7).equals("y")) {
    selected=2;
    fenix7=true;

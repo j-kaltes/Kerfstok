@@ -184,7 +184,13 @@ function onUpdate(dc) {
     dc.drawText(wmid*0.99, timeoff,timefont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_CENTER );
     dc.drawText(wmid,  datey,Gfx.FONT_TINY,  myTime.day_of_week+" "+  myTime.day + " " + myTime.month,Gfx.TEXT_JUSTIFY_CENTER );
     var load = System.getSystemStats().battery;
-    dc.drawText(width*0.975,height*((fr965||fr55)?.37:.35),Gfx.FONT_XTINY,load.format("%.0f")+"%", Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT);
+    var level=load.format("%.0f")+"%";
+    if( Toybox.System.Stats has:charging) {
+        if(System.getSystemStats().charging) {
+            level="+"+level;
+            }
+       }
+    dc.drawText(width*0.975,height*((fr965||fr55)?.37:.35),Gfx.FONT_XTINY,level, Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT);
     var actinfo=    Activity.getActivityInfo();
     var hr=0;
     if(actinfo!=null) {
