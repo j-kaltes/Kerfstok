@@ -103,7 +103,7 @@ function onLayout(dc) {
            timeoff=-theight*0.15;
             }
         else {
-            if(fr735xt) {
+            if(fr735xt||instinctE) {
                  timeoff=-theight*0.15;
                   }
             else {
@@ -123,7 +123,7 @@ function onLayout(dc) {
                  }
              }
         }
-   if(fr735xt||fr935) {
+   if(fr735xt||fr935||instinctE) {
         datey=theight*.95+timeoff;
         }
    else {

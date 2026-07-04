@@ -27,7 +27,7 @@ const	timeoff=edgeexplore2? height*.19:(edge830?(theight*0.4):clockhight);
 	dc.clear();
 	dc.setColor(Gfx.COLOR_WHITE, Graphics.COLOR_TRANSPARENT );
 var myTime = System.getClockTime(); // ClockTime object
-	dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+	dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 	var fw=dc.getTextWidthInPixels(operators[0], operatorfont);
 	var r=width/2 - fw;
 	var incr=2*Math.PI/operators.size();

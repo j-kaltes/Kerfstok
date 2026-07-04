@@ -35,7 +35,7 @@ function onUpdate(dc) {
     dc.clear();
 
 var myTime = System.getClockTime(); // ClockTime object
-    dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+    dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
     var hmid=height/(pos.size()+1);
     var pnr=previous.size();
     var allselected=memSelected>=0?(startpos+memSelected):-1;

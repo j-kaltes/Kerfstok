@@ -22,7 +22,7 @@ function onLayout(dc) {
     dc.setColor(foreground, background);
      dc.clear();
 var myTime = System.getClockTime(); // ClockTime object
-    dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+    dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
     var maxon=initer.memlab.size()-geg.from;
     if(geg.onscr<maxon) {
         maxon=geg.onscr;

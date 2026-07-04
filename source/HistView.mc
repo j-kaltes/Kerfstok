@@ -19,7 +19,7 @@ const selspaceright="<<                                                     ";
 var nonsense=[0,0,0];
 var hmid;
 var higher;
-var fontvalue= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:((edgeexplore2||edge830)?Gfx.FONT_MEDIUM:Gfx.FONT_TINY);
+var fontvalue= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:((edgeexplore2||edge830)?Gfx.FONT_MEDIUM:(instinctE?Gfx.FONT_XTINY:Gfx.FONT_TINY));
 
 var fonttimedate= (edge1040||edge840)?Gfx.FONT_GLANCE_NUMBER:(edgeexplore2?Gfx.FONT_SMALL:(edge830?Gfx.FONT_SMALL:Gfx.FONT_XTINY));
 
@@ -60,7 +60,7 @@ function onUpdate(dc) {
     dc.setColor(foreground, background);
     dc.clear();
     var myTime = System.getClockTime(); // ClockTime object
-    dc.drawText(wmid,clockhight , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+    dc.drawText(wmid,clocky , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 
     var olddag=null as Gregorian.Info;
 
@@ -107,30 +107,40 @@ function onUpdate(dc) {
         }
     if(val&&val[2]>=0&&val[2]<varnr) {
        var vartype=val[2]; 
-        switch(vartype) {
-            case 0: dc.setColor(Gfx.COLOR_PURPLE, Gfx.COLOR_WHITE);break;
-            case 1: dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_BLACK);break;
-            case 2: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_DK_RED);break;
-            case 3: dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);break;
-            case 4: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_DK_BLUE);break;
-            case 5: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);break;
-            case 6: dc.setColor(Gfx.COLOR_DK_BLUE, Gfx.COLOR_WHITE);break;
-            case 7: dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_BLACK);break;
-            case 8: dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_WHITE);break;
-            case 9: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_ORANGE);break;
-            case 10: dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_WHITE);break;
-            case 11: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_RED);break;
-            case 12: dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_BLACK);break;
-            case 13: dc.setColor(Gfx.COLOR_DK_RED, Gfx.COLOR_WHITE);break;
-            case 14: dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_WHITE);break;
-            case 15: dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_WHITE);break;
-            case 16: dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_BLACK);break;
-            case 17: dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_WHITE);break;
-            case 18: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_PURPLE);break;
-            case 19: dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_BLACK);break;
-            default: dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
-            }
+       if(instinctE) {
+          if(vartype%2==0) {
+                     dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
+                   }
+           else {
 
+                   dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+                }
+            }
+        else {
+                switch(vartype) {
+                    case 0: dc.setColor(Gfx.COLOR_PURPLE, Gfx.COLOR_WHITE);break;
+                    case 1: dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_BLACK);break;
+                    case 2: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_DK_RED);break;
+                    case 3: dc.setColor(Gfx.COLOR_GREEN, Gfx.COLOR_BLACK);break;
+                    case 4: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_DK_BLUE);break;
+                    case 5: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);break;
+                    case 6: dc.setColor(Gfx.COLOR_DK_BLUE, Gfx.COLOR_WHITE);break;
+                    case 7: dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_BLACK);break;
+                    case 8: dc.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_WHITE);break;
+                    case 9: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_ORANGE);break;
+                    case 10: dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_WHITE);break;
+                    case 11: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_RED);break;
+                    case 12: dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_BLACK);break;
+                    case 13: dc.setColor(Gfx.COLOR_DK_RED, Gfx.COLOR_WHITE);break;
+                    case 14: dc.setColor(Gfx.COLOR_ORANGE, Gfx.COLOR_WHITE);break;
+                    case 15: dc.setColor(Gfx.COLOR_PINK, Gfx.COLOR_WHITE);break;
+                    case 16: dc.setColor(Gfx.COLOR_LT_GRAY, Gfx.COLOR_BLACK);break;
+                    case 17: dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_WHITE);break;
+                    case 18: dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_PURPLE);break;
+                    case 19: dc.setColor(Gfx.COLOR_DK_GREEN, Gfx.COLOR_BLACK);break;
+                    default: dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
+                    }
+               }
         var tim=new Time.Moment(val[0]);
         var daginf = Gregorian.info(tim, Time.FORMAT_SHORT);
         var leftspace,rightspace;

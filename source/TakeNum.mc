@@ -34,9 +34,11 @@ var edge830=false;
 var edge840=false;
 var fr965=false;
 var fr165=false;
+var fr70=false;
 var mk3=false;
 var mk2=false;
 var instinct3=false;
+var instinctE=false;
 var venux1=false;
 var vivoactive6=false;
 var fr735xt=false;
@@ -171,6 +173,13 @@ if(WatchUi.loadResource(Rez.Strings.fenix5).equals("y")) {
        fr165=true;
        return;
        }
+   if(WatchUi.loadResource(Rez.Strings.fr70).equals("y"))   {
+       selected=2;
+       fr965=true;
+       fr165=true;
+       fr70=true;
+       return;
+       }
    if(WatchUi.loadResource(Rez.Strings.venux1).equals("y"))   {
        venux1=true;
        venusq2=true;
@@ -206,6 +215,14 @@ if(WatchUi.loadResource(Rez.Strings.fenix5).equals("y")) {
    if(WatchUi.loadResource(Rez.Strings.instinct3).equals("y")) {
         instinct3=true;
         selected=2;
+        return;
+        }
+   if(WatchUi.loadResource(Rez.Strings.instinctE).equals("y")) {
+//        instinct3=true;
+        selected=2;
+        instinctE=true;
+
+     histrows=3;
         return;
         }
    if(WatchUi.loadResource(Rez.Strings.approach).equals("y")) {

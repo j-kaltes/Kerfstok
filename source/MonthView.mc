@@ -45,7 +45,7 @@ const monthfont= venusq2?Gfx.FONT_SMALL:Gfx.FONT_MEDIUM;
 	dc.clear();
 	dc.setColor(foreground, Graphics.COLOR_TRANSPARENT );
 var myTime = System.getClockTime(); // ClockTime object
-	dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+	dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 	var fw=dc.getTextWidthInPixels(months[0], monthfont);
 	var r=width/2 - fw*4/5;
 	var incr=Math.PI/5;

@@ -19,9 +19,9 @@ var gluheight;
 var hheight;
 
 //const    unitlower=venu?0:height*0.038;
-const    unitlower=venu?0:height*0.030;
+const    unitlower=venu?0:(instinctE?height*0.06:height*0.030);
 const fromh=venusq2?10:(mk2?8:0); 
-const ydist=fr55?(height*.57):((venusq||venusq2||mk2)?(height*.65):(fenix7?(height*.635):(edge1040||edgeexplore2||edge830)?height*.7:(height*.59)));
+const ydist=fr55?(height*.57):((venusq||venusq2||mk2)?(height*.65):((fenix7||instinctE)?(height*.635):(edge1040||edgeexplore2||edge830)?height*.7:(height*.59)));
 const ydistunits=(fenix7?(height*.64):(edgeexplore2?(height*.67):(height*.65)));
 const sporttime=(venusq2||fenix8||fenixe||fr965||fr570)?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MILD;
 const heartfont=sporttime;
@@ -30,7 +30,7 @@ const glucosefont=((fr735xt||venusq2||fenix8||fenixe)||fr965)?Gfx.FONT_SYSTEM_NU
 const gpsfont=(venusq2||fenixe||fenix8)?Gfx.FONT_MEDIUM:Gfx.FONT_LARGE;
 
 const speedunitJust=(fenix7||venusq2||venusq)?(Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_RIGHT):Gfx.TEXT_JUSTIFY_RIGHT;
-const speedy=(mk2||fr55)?(height*.61):(fenix8?height*0.59:(fenix7?(height*.61):( venusq2?(height*.65):((  edge1040||edgeexplore2||edge830)?(height*.48):(fr965?height*.57:(height*.59))))));
+const speedy=(mk2||fr55||instinctE)?(height*.61):(fenix8?height*0.59:(fenix7?(height*.61):( venusq2?(height*.65):((  edge1040||edgeexplore2||edge830)?(height*.48):(fr965?height*.57:(height*.59))))));
 const lapsfont=(fenix7||fr55||fr935||fr570|mk2)?Gfx.FONT_LARGE:Gfx.FONT_NUMBER_MEDIUM;
 var starty,y;
 var     speedunity;
@@ -52,7 +52,7 @@ function onLayout(dc) {
             starty=height*.03+(hheight*.78-gluheight*.2);
             }
         else {
-             if(fr735xt) {
+             if(fr735xt||instinctE) {
                 starty=hheight*.78-gluheight*.15;
                 }
             else {

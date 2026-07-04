@@ -34,7 +34,7 @@ function onUpdate(dc) {
     dc.setColor(foreground, background);
     dc.clear();
 var myTime = System.getClockTime(); // ClockTime object
-    dc.drawText(wmid,clockhight , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+    dc.drawText(wmid,clocky , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
     var tim = Gregorian.info(new Time.Moment(val[0]) , Time.FORMAT_MEDIUM);
     selon(dc,0);
     dc.drawText(wmid*2/3, hmid, Gfx.FONT_MEDIUM,tim.hour.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER| Gfx.TEXT_JUSTIFY_RIGHT );

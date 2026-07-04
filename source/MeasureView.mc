@@ -16,7 +16,7 @@ function onShow() {
 function onLayout(dc) {
 }
 
-var measurefont=(fr735xt||fr935)?Gfx.FONT_NUMBER_MILD:Gfx.FONT_NUMBER_MEDIUM;
+var measurefont=(fr735xt||fr935)?Gfx.FONT_NUMBER_MILD:(instinctE?Gfx.FONT_XTINY:Gfx.FONT_NUMBER_MEDIUM);
 
     function onUpdate(dc) { 
 	dc.clearClip();

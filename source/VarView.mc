@@ -3,6 +3,7 @@ using Toybox.Graphics as Gfx;
 using Toybox.System;
 using Toybox.Application.Storage;
 var clockhight;
+var clocky;
 //const clockfont= Gfx.FONT_XTINY;
 var clockfont;
 class VarView extends WatchUi.View {
@@ -26,7 +27,7 @@ function onLayout(dc) {
 	dc.setColor(foreground, background);
 	 dc.clear();
 	var myTime = System.getClockTime(); // ClockTime object
-	dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+	dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 	for(var i=0;i<onscr;i++) {
 		var val=from+i;
 		if(val<varnr) {

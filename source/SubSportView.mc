@@ -24,6 +24,8 @@ function onShow() {
 }
 function onLayout(dc) {
     clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:(edge830?2.1:2.7));
+  //  clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:((edge830||fr70)?2.4:2.7));
+    clocky=fr70?clockhight*1.2:clockhight;
 }
 
 
@@ -32,7 +34,7 @@ function onLayout(dc) {
     dc.setColor(foreground, background);
      dc.clear();
     var myTime = System.getClockTime(); // ClockTime object
-    dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+    dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
     for(var i=0;i<rows;i++) {
         var val=from+i;
         if(val>=subs.size()) {

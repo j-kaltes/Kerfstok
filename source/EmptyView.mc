@@ -63,13 +63,17 @@ var hmid;
 
 
     }
+
 function onLayout(dc) {
     height= dc.getHeight();
     width= dc.getWidth();
     wmid=width/2;
 
     hmid=height/(firstrows+1);
+    //clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:((edge830||fr70)?2.6:2.7));
+    //clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:((edge830||fr70)?2.4:2.7));
     clockhight= dc.getFontHeight(clockfont)/((edge1040||edge840)?1.8:(edge830?2.1:2.7));
+    clocky=fr70?clockhight*1.2:clockhight;
     theight= dc.getFontHeight(Gfx.FONT_NUMBER_HOT);
 }
 function showitem(dc,pos,str) {
@@ -89,7 +93,7 @@ function showitem(dc,pos,str) {
         dc.setColor(foreground, background);
          dc.clear();
         var myTime = System.getClockTime(); // ClockTime object
-        dc.drawText(wmid, clockhight, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+        dc.drawText(wmid, clocky, clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
                 showitem(dc,1,"Input");
                 if(storageid[0]>0||storageid[1]>0) {
                                 showitem(dc,2,"View");

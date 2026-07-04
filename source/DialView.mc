@@ -22,9 +22,9 @@ var timeoff=0.0;
         View.initialize();
 	variable=vari;
 	nums=numin;
-	timeoff=instinct3?(theight*-0.05):(System.SCREEN_SHAPE_RECTANGLE==screenShape?
+	timeoff=instinctE?theight*0.2:(instinct3?(theight*-0.05):(System.SCREEN_SHAPE_RECTANGLE==screenShape?
         ((edge1040||edgeexplore2)?height*.15:(edge830?(theight*0.3):
-        ((venusq?(theight*0.2):(theight*0.1))))):(fr935?theight*0.35:(fr55?theight*.065:((width>340?theight*0.05:0.0)))));
+        ((venusq?(theight*0.2):(theight*0.1))))):(fr935?theight*0.35:(fr55?theight*.065:((width>340?theight*0.05:0.0))))));
 	}
 
 var vary;
@@ -71,7 +71,7 @@ var numwidth;
 			}
 		dc.drawText(wmid,vary , Gfx.FONT_SMALL,variable, Gfx.TEXT_JUSTIFY_CENTER );
 		var myTime = System.getClockTime(); // ClockTime object
-		dc.drawText(wmid,clockhight , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
+		dc.drawText(wmid,clocky , clockfont,    myTime.hour.format("%02d") + ":" + myTime.min.format("%02d"),Gfx.TEXT_JUSTIFY_VCENTER|Gfx.TEXT_JUSTIFY_CENTER );
 		dc.setClip(xnumbers,hmidnum,wnumfont*maxline,hnumfont*10/3);
 		toshow=0;
 		}
